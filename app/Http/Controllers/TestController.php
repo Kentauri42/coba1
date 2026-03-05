@@ -42,6 +42,7 @@ class TestController extends Controller
         'password' => Hash::make($validated['pwd']),
         ]);
 
+        Auth::login($user);
         $request->session()->regenerate();
         return redirect()->route('dashboard')->with('success', 'User Successfully Created!');
         }
@@ -61,13 +62,15 @@ class TestController extends Controller
             return back()->with('error','User found, but the password is wrong!');
         }
 
+        Auth::login($user);
+        $request->session()->regenerate();
         return redirect()->route('dashboard')->with('success', 'Successfully Login');
         }
     }
 
     public function dashboard()
     {
-        $users = DB::select('select * from users');
-        return view('Testview.dashboard', ['users'=>$users]);
+        $user = auth()->user();
+        return view('Testview.dashboard', ['users'=>$user]);
     }
 }

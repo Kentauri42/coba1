@@ -4,7 +4,7 @@
         <div class="carousel-item active">
             <div class="d-flex justify-content-center gap-3">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://media.geeksforgeeks.org/wp-content/uploads/20191208112937/Laravel-View-Data-Passing-Using-with-GfG.png" alt="Card image cap">
+                    <img class="card-img-top" src="https://media.geeksforgeeks.org/wp-content/uploads/20191208112937/Laravel-View-Data-Passing-Using-with-GfG.png" alt="Card image cap" style="width:100%; height:200px; object-fit:cover">
                     <div class="card-body">
                         <h5 class="card-title">Card title 1</h5>
                         <p class="card-text">Some quick example text.</p>
@@ -17,7 +17,7 @@
         <div class="carousel-item">
             <div class="d-flex justify-content-center gap-3">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://uploads-ssl.webflow.com/61af164800e38cf1b6c60b55/648173aaceaac1f8227ee459_laravel.webp" alt="Card image cap">
+                    <img class="card-img-top" src="https://uploads-ssl.webflow.com/61af164800e38cf1b6c60b55/648173aaceaac1f8227ee459_laravel.webp" alt="Card image cap" style="width:100%; height:200px; object-fit:cover">
                     <div class="card-body">
                         <h5 class="card-title">Card title 1</h5>
                         <p class="card-text">Some quick example text.</p>
