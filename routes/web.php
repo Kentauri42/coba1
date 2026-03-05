@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\UserLog;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TestController;
 
 // Route::get('/', function () {
@@ -15,10 +17,4 @@ Route::post('/signup', [TestController::class,'signup'])->name('signup');
 
 Route::get('/dashboard', [TestController::class,'dashboard'])->name('dashboard');
 
-Route::post('/logout', function () {
-    Auth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-
-    return redirect('index');
-});
+Route::post('/logout', [TestController::class,'logout'])->name('logout');

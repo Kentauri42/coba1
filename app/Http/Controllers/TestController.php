@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\UserLog;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +44,11 @@ class TestController extends Controller
         ]);
 
         Auth::login($user);
+        UserLog::updateOrCreate(
+            ['user_id' => Auth::id()],
+            ['status' => '1' ,'signin' => now(),'signout' => null]
+        );
+
         $request->session()->regenerate();
         return redirect()->route('dashboard')->with('success', 'User Successfully Created!');
         }
@@ -63,6 +69,10 @@ class TestController extends Controller
         }
 
         Auth::login($user);
+        UserLog::updateOrCreate(
+            ['user_id' => Auth::id()],
+            ['status' => '1' ,'signin' => now(),'signout' => null]
+        );
         $request->session()->regenerate();
         return redirect()->route('dashboard')->with('success', 'Successfully Login');
         }
@@ -71,6 +81,19 @@ class TestController extends Controller
     public function dashboard()
     {
         $user = auth()->user();
-        return view('Testview.dashboard', ['users'=>$user]);
+        $date = now();
+        return $user == null ? view('View1', ['date'=>$date ?? '', 'pengguna'=>"pengguna"]) : view('Testview.dashboard', ['users'=>$user]);
+    }
+
+    public function logout(){
+        UserLog::updateOrCreate(
+            ['user_id' => Auth::id()],
+            ['status' => '0' ,'signout' => now()]
+        );
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('index');
     }
 }
